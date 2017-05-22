@@ -22,3 +22,4 @@ export const dotColor = textLinkColor;
 export const selectedDotColor = foregroundColor;
 export const arrowColor = textLinkColor;
 export const monthTextColor = textDefaultColor;
+export const dayBackgroundColor = '#ffffff00';
