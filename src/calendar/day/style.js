@@ -5,13 +5,17 @@ export default function styleConstructor(theme={}) {
   const appStyle = {...defaultStyle, ...theme};
   return StyleSheet.create({
     base: {
-      width: 32,
-      height: 32,
-      alignItems: 'center'
+      flex: 1,
+      height: 40,
+      alignItems: 'flex-start',
+      borderWidth: 0.5,
+      borderColor: 'lightgrey',
+      backgroundColor: appStyle.weekBackground,
     },
     text: {
       marginTop: 4,
-      fontSize: 16,
+      marginLeft: 4,
+      fontSize: 12,
       fontWeight: '300',
       color: appStyle.dayTextColor,
       backgroundColor: 'rgba(255, 255, 255, 0)'
@@ -24,7 +28,7 @@ export default function styleConstructor(theme={}) {
       borderRadius: 16
     },
     todayText: {
-      color: appStyle.todayTextColor
+      color: appStyle.todayTextColor,
     },
     selectedText: {
       color: appStyle.selectedDayTextColor
@@ -33,11 +37,12 @@ export default function styleConstructor(theme={}) {
       color: appStyle.textDisabledColor
     },
     dot: {
-      width: 4,
-      height: 4,
+      width: 8,
+      height: 8,
       marginTop: 1,
-      borderRadius: 2,
-      opacity: 0
+      borderRadius: 4,
+      opacity: 0,
+      marginLeft: 4,
     },
     visibleDot: {
       opacity: 1,

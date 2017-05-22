@@ -56,12 +56,10 @@ class CalendarHeader extends Component {
     return (
       <View>
         <View style={this.style.header}>
-          {leftArrow}
-          <View style={{flexDirection: 'row'}}>
+            {leftArrow}
             <Text style={this.style.monthText}>{this.props.month.toString('MMMM yyyy')}</Text>
             {indicator}
-          </View>
-          {rightArrow}
+            {rightArrow}
         </View>
         <View style={this.style.week}>
           {weekDaysNames.map((day) => (
