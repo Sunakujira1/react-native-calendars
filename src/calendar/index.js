@@ -110,14 +110,15 @@ class Calendar extends Component {
       }
     } else {
       const DayComp = this.props.markingType === 'interactive' ? UnitDay : Day;
-      const markingExists = this.props.markedDates ? true : false;
+      const markingExists = (this.props.proposedDates || this.props.confirmedDates) ? true : false;
       dayComp = (
         <DayComp
             key={id}
             state={state}
             theme={this.props.theme}
             onPress={this.pressDay.bind(this, day)}
-            marked={this.getDateMarking(day)}
+            proposedMarked={this.getDateProposedMarking(day)}
+            confirmedMarked={this.getDateConfirmedMarking()(day)}
             markingExists={markingExists}
           >
             {day.getDate()}
@@ -127,11 +128,23 @@ class Calendar extends Component {
     return dayComp;
   }
 
-  getDateMarking(day) {
-    if (!this.props.markedDates) {
+  getDateProposedMarking(day) {
+    if (!this.props.proposedDates) {
       return false;
     }
-    const dates = this.props.markedDates[day.toString('yyyy-MM-dd')] || [];
+    const dates = this.props.proposedDates[day.toString('yyyy-MM-dd')] || [];
+    if (dates.length) {
+      return dates;
+    } else {
+      return false;
+    }
+  }
+
+  getDateConfirmedMarking(day) {
+    if (!this.props.confirmedDates) {
+      return false;
+    }
+    const dates = this.props.confirmedDates[day.toString('yyyy-MM-dd')] || [];
     if (dates.length) {
       return dates;
     } else {
@@ -159,7 +172,7 @@ class Calendar extends Component {
     if (current) {
       const lastMonthOfDay = current.clone().addMonths(1, true).setDate(1).addDays(-1).toString('yyyy-MM-dd');
       if (this.props.displayLoadingIndicator &&
-          !(this.props.markedDates && this.props.markedDates[lastMonthOfDay])) {
+          !(this.props.proposedDates && this.props.proposedDates[lastMonthOfDay])) {
         indicator = true;
       }
     }

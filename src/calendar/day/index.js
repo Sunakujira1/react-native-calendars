@@ -30,10 +30,14 @@ class Day extends Component {
     const containerStyle = [this.style.base];
     const textStyle = [this.style.text];
     const dotStyle = [this.style.dot];
-    let dot;
-    if (this.props.marked) {
-      dotStyle.push(this.style.visibleDot);
-      dot = (<View style={dotStyle}/>);
+    let proposedDot;
+    let confirmedDot;
+    if (this.props.proposedMarked) {
+      dotStyle.push(this.style.proposedDot);
+      proposedDot = (<View style={dotStyle}/>);
+    } else if (this.props.confirmedDot) {
+      dotStyle.push(this.style.confirmedDot);
+      confirmedDot = (<View style={dotStyle}/>);
     } else if (!this.props.markingExists) {
       textStyle.push(this.style.alignedText);
     }
@@ -50,7 +54,8 @@ class Day extends Component {
     return (
       <TouchableOpacity style={containerStyle} onPress={this.props.onPress}>
         <Text style={textStyle}>{this.props.children}</Text>
-        {dot}
+        {proposedDot}
+        {confirmedDot}
       </TouchableOpacity>
     );
   }
