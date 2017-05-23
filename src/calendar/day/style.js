@@ -44,9 +44,20 @@ export default function styleConstructor(theme={}) {
       opacity: 0,
       marginLeft: 4,
     },
+    imageDot: {
+      width: 12,
+      height: 12,
+      marginLeft: 4,
+    },
     confirmedDot: {
-      opacity: 1,
-      backgroundColor: appStyle.confirmedDotColor
+      ...Platform.select({
+        ios: {
+          tintColor: appStyle.confirmedDotColor,
+        },
+        android: {
+          tintColor: appStyle.confirmedDotColor,
+        },
+      }),
     },
     proposedDot: {
       opacity: 1,

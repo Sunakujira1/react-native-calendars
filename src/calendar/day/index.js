@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
   TouchableOpacity,
   Text,
-  View
+  View,
+  Image,
 } from 'react-native';
 
 import styleConstructor from './style';
@@ -30,7 +31,7 @@ class Day extends Component {
     const containerStyle = [this.style.base];
     const textStyle = [this.style.text];
     const proposedDotStyle = [this.style.dot];
-    const confirmedDotStyle = [this.style.dot];
+    const confirmedDotStyle = [this.style.imageDot];
     let proposedDot;
     let confirmedDot;
     if (this.props.proposedMarked) {
@@ -39,7 +40,7 @@ class Day extends Component {
     }
     if (this.props.confirmedMarked) {
       confirmedDotStyle.push(this.style.confirmedDot);
-      confirmedDot = (<View style={confirmedDotStyle}/>);
+      confirmedDot = (<Image source={require('../img/checked.png')} style={confirmedDotStyle}/>);
     }
     if (!this.props.markingExists) {
       textStyle.push(this.style.alignedText);
@@ -57,7 +58,7 @@ class Day extends Component {
     return (
       <TouchableOpacity style={containerStyle} onPress={this.props.onPress}>
         <Text style={textStyle}>{this.props.children}</Text>
-        <View>
+        <View style={{flexDirection: 'row'}}>
           {proposedDot}
           {confirmedDot}
         </View>
