@@ -29,16 +29,17 @@ class Day extends Component {
   render() {
     const containerStyle = [this.style.base];
     const textStyle = [this.style.text];
-    const dotStyle = [this.style.dot];
+    const proposedDotStyle = [this.style.dot];
+    const confirmedDotStyle = [this.style.dot];
     let proposedDot;
     let confirmedDot;
     if (this.props.proposedMarked) {
-      dotStyle.push(this.style.proposedDot);
-      proposedDot = (<View style={dotStyle}/>);
+      proposedDotStyle.push(this.style.proposedDot);
+      proposedDot = (<View style={proposedDotStyle}/>);
     }
     if (this.props.confirmedMarked) {
-      dotStyle.push(this.style.confirmedDot);
-      confirmedDot = (<View style={dotStyle}/>);
+      confirmedDotStyle.push(this.style.confirmedDot);
+      confirmedDot = (<View style={confirmedDotStyle}/>);
     }
     if (!this.props.markingExists) {
       textStyle.push(this.style.alignedText);
@@ -56,8 +57,10 @@ class Day extends Component {
     return (
       <TouchableOpacity style={containerStyle} onPress={this.props.onPress}>
         <Text style={textStyle}>{this.props.children}</Text>
-        {proposedDot}
-        {confirmedDot}
+        <View>
+          {proposedDot}
+          {confirmedDot}
+        </View>
       </TouchableOpacity>
     );
   }
