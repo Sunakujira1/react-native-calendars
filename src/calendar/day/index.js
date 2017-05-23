@@ -36,7 +36,7 @@ class Day extends Component {
       dotStyle.push(this.style.proposedDot);
       proposedDot = (<View style={dotStyle}/>);
     }
-    if (this.props.confirmedDot) {
+    if (this.props.confirmedMarked) {
       dotStyle.push(this.style.confirmedDot);
       confirmedDot = (<View style={dotStyle}/>);
     }
