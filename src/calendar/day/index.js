@@ -39,7 +39,8 @@ class Day extends Component {
     if (this.props.confirmedDot) {
       dotStyle.push(this.style.confirmedDot);
       confirmedDot = (<View style={dotStyle}/>);
-    } else if (!this.props.markingExists) {
+    }
+    if (!this.props.markingExists) {
       textStyle.push(this.style.alignedText);
     }
 
