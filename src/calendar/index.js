@@ -118,7 +118,7 @@ class Calendar extends Component {
             theme={this.props.theme}
             onPress={this.pressDay.bind(this, day)}
             proposedMarked={this.getDateProposedMarking(day)}
-            confirmedMarked={this.getDateConfirmedMarking()(day)}
+            confirmedMarked={this.getDateConfirmedMarking(day)}
             markingExists={markingExists}
           >
             {day.getDate()}
