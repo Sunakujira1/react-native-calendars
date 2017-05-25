@@ -9,8 +9,6 @@ export default function getStyle(theme={}) {
       backgroundColor: appStyle.calendarBackground
     },
     week: {
-      paddingLeft: 5,
-      paddingRight: 5,
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
