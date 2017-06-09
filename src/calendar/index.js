@@ -110,14 +110,13 @@ class Calendar extends Component {
       }
     } else {
       const DayComp = this.props.markingType === 'interactive' ? UnitDay : Day;
-      const markingExists = (this.props.proposedDates || this.props.confirmedDates) ? true : false;
+      const markingExists = this.props.confirmedDates ? true : false;
       dayComp = (
         <DayComp
             key={id}
             state={state}
             theme={this.props.theme}
             onPress={this.pressDay.bind(this, day)}
-            proposedMarked={this.getDateProposedMarking(day)}
             confirmedMarked={this.getDateConfirmedMarking(day)}
             markingExists={markingExists}
           >
@@ -126,18 +125,6 @@ class Calendar extends Component {
         );
     }
     return dayComp;
-  }
-
-  getDateProposedMarking(day) {
-    if (!this.props.proposedDates) {
-      return false;
-    }
-    const dates = this.props.proposedDates[day.toString('yyyy-MM-dd')] || [];
-    if (dates.length) {
-      return dates;
-    } else {
-      return false;
-    }
   }
 
   getDateConfirmedMarking(day) {

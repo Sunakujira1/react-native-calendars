@@ -30,14 +30,8 @@ class Day extends Component {
   render() {
     const containerStyle = [this.style.base];
     const textStyle = [this.style.text];
-    const proposedDotStyle = [this.style.dot];
     const confirmedDotStyle = [this.style.imageDot];
-    let proposedDot;
     let confirmedDot;
-    if (this.props.proposedMarked) {
-      proposedDotStyle.push(this.style.proposedDot);
-      proposedDot = (<View style={proposedDotStyle}/>);
-    }
     if (this.props.confirmedMarked) {
       confirmedDotStyle.push(this.style.confirmedDot);
       confirmedDot = (<Image source={require('../img/checked.png')} style={confirmedDotStyle}/>);
@@ -48,7 +42,6 @@ class Day extends Component {
 
     if (this.props.state === 'selected') {
       containerStyle.push(this.style.selected);
-      dotStyle.push(this.style.selectedDot);
       textStyle.push(this.style.selectedText);
     } else if (this.props.state === 'disabled') {
       textStyle.push(this.style.disabledText);
@@ -59,7 +52,7 @@ class Day extends Component {
       <TouchableOpacity style={containerStyle} onPress={this.props.onPress}>
         <Text style={textStyle}>{this.props.children}</Text>
         <View style={{flexDirection: 'row'}}>
-          {proposedDot}
+          //TODO: Show the emojis in here
           {confirmedDot}
         </View>
       </TouchableOpacity>
