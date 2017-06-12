@@ -111,6 +111,7 @@ class Calendar extends Component {
     } else {
       const DayComp = this.props.markingType === 'interactive' ? UnitDay : Day;
       const markingExists = this.props.confirmedDates ? true : false;
+      // TODO: pass the emojis as firstEmoji and secondEmoji
       dayComp = (
         <DayComp
             key={id}

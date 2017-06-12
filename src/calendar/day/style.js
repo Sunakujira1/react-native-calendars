@@ -45,6 +45,7 @@ export default function styleConstructor(theme={}) {
       marginLeft: 4,
     },
     imageDot: {
+      marginTop: 4,
       width: 12,
       height: 12,
       marginLeft: 4,
@@ -61,6 +62,11 @@ export default function styleConstructor(theme={}) {
     },
     selectedDot: {
       backgroundColor: appStyle.selectedDotColor
+    },
+    subContainer: {
+      flexDirection: 'row',
+      alignSelf: 'stretch',
+      justifyContent: 'flex-start',
     }
   });
 }

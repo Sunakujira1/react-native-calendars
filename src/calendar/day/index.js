@@ -31,9 +31,11 @@ class Day extends Component {
     const containerStyle = [this.style.base];
     const textStyle = [this.style.text];
     const confirmedDotStyle = [this.style.imageDot];
+    const subContainerStyle = [this.style.subContainer];
     let confirmedDot;
     if (this.props.confirmedMarked) {
       confirmedDotStyle.push(this.style.confirmedDot);
+      subContainerStyle.push({ justifyContent: 'center' });
       confirmedDot = (<Image source={require('../img/checked.png')} style={confirmedDotStyle}/>);
     }
     if (!this.props.markingExists) {
@@ -50,10 +52,15 @@ class Day extends Component {
     }
     return (
       <TouchableOpacity style={containerStyle} onPress={this.props.onPress}>
-        <Text style={textStyle}>{this.props.children}</Text>
-        <View style={{flexDirection: 'row'}}>
-          //TODO: Show the emojis in here
+        <View style={subContainerStyle}>
+          <Text style={textStyle}>{this.props.children}</Text>
           {confirmedDot}
+        </View>
+        <View style={{flexDirection: 'row', paddingLeft: 4}}>
+          <Text style={{ fontSize: 12 }}>
+            {this.props.firstEmoji}
+            {this.props.secondEmoji}
+          </Text>
         </View>
       </TouchableOpacity>
     );
