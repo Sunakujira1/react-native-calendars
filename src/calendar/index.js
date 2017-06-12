@@ -111,7 +111,15 @@ class Calendar extends Component {
     } else {
       const DayComp = this.props.markingType === 'interactive' ? UnitDay : Day;
       const markingExists = this.props.confirmedDates ? true : false;
-      // TODO: pass the emojis as firstEmoji and secondEmoji
+      let dayEmojis = this.getDateEmojis(day);
+      let firstEmoji = undefined;
+      let secondEmoji = undefined;
+      if (dayEmojis) {
+        const firstRandomNumber = Math.floor(Math.random()*(dayEmojis.length));
+        firstEmoji = dayEmojis.splice(firstRandomNumber, 1);
+        const secondRandomNumber = Math.floor(Math.random()*(dayEmojis.length));
+        secondEmoji = dayEmojis.splice(secondRandomNumber, 1);
+      }
       dayComp = (
         <DayComp
             key={id}
@@ -120,6 +128,8 @@ class Calendar extends Component {
             onPress={this.pressDay.bind(this, day)}
             confirmedMarked={this.getDateConfirmedMarking(day)}
             markingExists={markingExists}
+            firstEmoji={firstEmoji}
+            secondEmoji={secondEmoji}
           >
             {day.getDate()}
           </DayComp>
@@ -133,6 +143,18 @@ class Calendar extends Component {
       return false;
     }
     const dates = this.props.confirmedDates[day.toString('yyyy-MM-dd')] || [];
+    if (dates.length) {
+      return dates;
+    } else {
+      return false;
+    }
+  }
+
+  getDateEmojis(day) {
+    if (!this.props.dates) {
+      return false;
+    }
+    const dates = this.props.dates[day.toString('yyyy-MM-dd')] || [];
     if (dates.length) {
       return dates;
     } else {
