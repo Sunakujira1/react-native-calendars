@@ -28,7 +28,13 @@ export default function styleConstructor(theme={}) {
       borderRadius: 16
     },
     todayText: {
-      color: appStyle.todayTextColor,
+      paddingTop: Platform.OS === 'android' ? 0 : 2,
+      paddingLeft: 2,
+      height: 18,
+      width: 18,
+      borderWidth: 1,
+      borderRadius: 9,
+      borderColor: appStyle.todayTextColor
     },
     selectedText: {
       color: appStyle.selectedDayTextColor
