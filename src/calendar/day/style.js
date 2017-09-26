@@ -8,7 +8,7 @@ export default function styleConstructor(theme={}) {
       flex: 1,
       height: 40,
       alignItems: 'flex-start',
-      borderWidth: 0.5,
+      borderWidth: StyleSheet.hairlineWidth,
       borderColor: 'lightgrey',
       backgroundColor: appStyle.weekBackground,
     },
