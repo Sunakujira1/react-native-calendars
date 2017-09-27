@@ -91,15 +91,16 @@ class Calendar extends Component {
   renderDay(day, id) {
     const minDate = parseDate(this.props.minDate);
     const maxDate = parseDate(this.props.maxDate);
-    let state = '';
+    let state = [];
     if (this.isSelected(day)) {
-      state = 'selected';
+      state.push('selected');
     } else if ((minDate && !dateutils.isGTE(day, minDate)) || (maxDate && !dateutils.isLTE(day, maxDate))) {
-      state = 'disabled';
+      state.push('disabled');
     } else if (!dateutils.sameMonth(day, this.state.currentMonth)) {
-      state = 'disabled';
-    } else if (dateutils.sameDate(day, XDate())) {
-      state = 'today';
+      state.push('disabled');
+    }
+    if (dateutils.sameDate(day, XDate())) {
+      state.push('today');
     }
     let dayComp;
     if (!dateutils.sameMonth(day, this.state.currentMonth) && this.props.hideExtraDays) {

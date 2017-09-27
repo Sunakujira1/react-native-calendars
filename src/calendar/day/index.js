@@ -15,7 +15,7 @@ class Day extends Component {
   }
 
   static propTypes = {
-    state: React.PropTypes.oneOf(['selected', 'disabled', 'today', ''])
+    state: React.PropTypes.arrayOf(React.PropTypes.oneOf(['selected', 'disabled', 'today', '']))
   };
 
   shouldComponentUpdate(nextProps) {
@@ -35,20 +35,26 @@ class Day extends Component {
     let confirmedDot;
     if (this.props.confirmedMarked) {
       confirmedDotStyle.push(this.style.confirmedDot);
-      subContainerStyle.push({ justifyContent: 'center' });
+      subContainerStyle.push({ justifyContent: 'space-between' });
       confirmedDot = (<Image source={require('../img/checked.png')} style={confirmedDotStyle}/>);
     }
     if (!this.props.markingExists) {
       textStyle.push(this.style.alignedText);
     }
 
-    if (this.props.state === 'selected') {
+    if (this.props.state.includes('selected')) {
       containerStyle.push(this.style.selected);
       textStyle.push(this.style.selectedText);
-    } else if (this.props.state === 'disabled') {
+    } else if (this.props.state.includes('disabled')) {
       textStyle.push(this.style.disabledText);
-    } else if (this.props.state === 'today') {
+    }
+    if (this.props.state.includes('today')) {
       textStyle.push(this.style.todayText);
+    }
+    if (this.props.state.includes('selected') &&
+      this.props.state.includes('today')
+    ) {
+      textStyle.push(this.style.todaySelectedText);
     }
     return (
       <TouchableOpacity style={containerStyle} onPress={this.props.onPress}>
@@ -57,7 +63,7 @@ class Day extends Component {
           {confirmedDot}
         </View>
         <View style={{flexDirection: 'row', paddingLeft: 4}}>
-          <Text style={{ fontSize: 12 }}>
+          <Text style={{ fontSize: 12, backgroundColor: 'transparent' }}>
             {this.props.firstEmoji}
             {this.props.secondEmoji}
           </Text>
