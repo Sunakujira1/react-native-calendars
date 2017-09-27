@@ -32,6 +32,8 @@ class Day extends Component {
     const textStyle = [this.style.text];
     const confirmedDotStyle = [this.style.imageDot];
     const subContainerStyle = [this.style.subContainer];
+    const emojiContainerStyle = [this.style.emojiContainerStyle];
+    const emojiTextStyle = [this.style.emojiTextStyle];
     let confirmedDot;
     if (this.props.confirmedMarked) {
       confirmedDotStyle.push(this.style.confirmedDot);
@@ -62,9 +64,11 @@ class Day extends Component {
           <Text style={textStyle}>{this.props.children}</Text>
           {confirmedDot}
         </View>
-        <View style={{flexDirection: 'row', paddingLeft: 4}}>
-          <Text style={{ fontSize: 12, backgroundColor: 'transparent' }}>
+        <View style={emojiContainerStyle}>
+          <Text style={emojiTextStyle}>
             {this.props.firstEmoji}
+          </Text>
+          <Text style={emojiTextStyle}>
             {this.props.secondEmoji}
           </Text>
         </View>

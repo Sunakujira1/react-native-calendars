@@ -7,7 +7,7 @@ export default function styleConstructor(theme={}) {
     base: {
       flex: 1,
       height: 40,
-      alignItems: 'flex-start',
+      alignItems: 'stretch',
       borderWidth: StyleSheet.hairlineWidth,
       borderColor: 'lightgrey',
       backgroundColor: appStyle.weekBackground,
@@ -23,7 +23,6 @@ export default function styleConstructor(theme={}) {
       width: 20,
       marginTop: 3 - ( (Platform.OS === 'android' ? 0 : 2)),
       marginLeft: 1,
-      marginBottom: -3,
     },
     alignedText: {
       marginTop: Platform.OS === 'android' ? 4 : 6
@@ -47,7 +46,6 @@ export default function styleConstructor(theme={}) {
       overflow: 'hidden',
       marginTop: 3 - ( (Platform.OS === 'android' ? 0 : 2)),
       marginLeft: 1,
-      marginBottom: -3,
     },
     todaySelectedText: {
       fontWeight: 'bold',
@@ -87,6 +85,16 @@ export default function styleConstructor(theme={}) {
       alignSelf: 'stretch',
       justifyContent: 'flex-start',
       zIndex: 10,
-    }
+    },
+    emojiContainerStyle: {
+      flexDirection: 'row',
+      justifyContent: 'flex-end',
+      marginTop: -3,
+      paddingRight: 3,
+    },
+    emojiTextStyle: {
+      fontSize: 12,
+      backgroundColor: 'transparent',
+    },
   });
 }
