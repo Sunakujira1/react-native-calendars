@@ -19,7 +19,7 @@ class Day extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    return ['state', 'children', 'marked', 'onPress', 'markingExists'].reduce((prev, next) => {
+    return ['state', 'children', 'marked', 'onPress', 'markingExists', 'firstEmoji', 'secondEmoji'].reduce((prev, next) => {
       if (prev || nextProps[next] !== this.props[next]) {
         return true;
       }

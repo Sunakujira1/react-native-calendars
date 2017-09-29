@@ -12,6 +12,25 @@ export default function shouldComponentUpdate(nextProps, nextState) {
     return prev;
   }, {update: false});
 
+  shouldUpdate = (Object.keys(nextProps.dates) || []).reduce((prev, next, i) => {
+    const currentConfirmedDate = (Object.keys(this.props.dates) || [])[i];
+
+    if (!currentConfirmedDate
+      || !next
+      || parseDate(currentConfirmedDate).getTime() !== parseDate(next).getTime()
+      || this.props.dates[currentConfirmedDate].length !== nextProps.dates[next].length
+      || this.props.dates[currentConfirmedDate].some((emoji, index) => {
+        this.props.dates[currentConfirmedDate][index] !== nextProps.dates[next][index];
+      })
+    ) {
+      return {
+        update: true,
+        field: 'selected'
+      };
+    }
+    return prev;
+  }, shouldUpdate);
+
   shouldUpdate = ['markedDates', 'hideExtraDays'].reduce((prev, next) => {
     if (!prev.update && nextProps[next] !== this.props[next]) {
       return {
@@ -46,6 +65,6 @@ export default function shouldComponentUpdate(nextProps, nextState) {
       field: 'current'
     };
   }
-  //console.log(shouldUpdate.field, shouldUpdate.update);
+
   return shouldUpdate.update;
 }

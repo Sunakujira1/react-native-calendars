@@ -117,9 +117,9 @@ class Calendar extends Component {
       let secondEmoji = undefined;
       if (dayEmojis) {
         const firstRandomNumber = Math.floor(Math.random()*(dayEmojis.length));
-        firstEmoji = dayEmojis.splice(firstRandomNumber, 1);
+        firstEmoji = dayEmojis[firstRandomNumber];
         const secondRandomNumber = Math.floor(Math.random()*(dayEmojis.length));
-        secondEmoji = dayEmojis.splice(secondRandomNumber, 1);
+        secondEmoji = dayEmojis[secondRandomNumber];
       }
       dayComp = (
         <DayComp
@@ -172,7 +172,6 @@ class Calendar extends Component {
   }
 
   render() {
-    //console.log('render calendar ');
     const days = dateutils.page(this.state.currentMonth, this.props.firstDay);
     const weeks = [];
     while (days.length) {
