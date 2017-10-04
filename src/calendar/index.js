@@ -12,6 +12,25 @@ import UnitDay from './unit-day';
 import CalendarHeader from './header';
 import shouldComponentUpdate from './updater';
 
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 class Calendar extends Component {
   constructor(props) {
     super(props);
@@ -116,10 +135,9 @@ class Calendar extends Component {
       let firstEmoji = undefined;
       let secondEmoji = undefined;
       if (dayEmojis) {
-        const firstRandomNumber = Math.floor(Math.random()*(dayEmojis.length));
-        firstEmoji = dayEmojis[firstRandomNumber];
-        const secondRandomNumber = Math.floor(Math.random()*(dayEmojis.length));
-        secondEmoji = dayEmojis[secondRandomNumber];
+        const shuffledEmojis = shuffle(dayEmojis);
+        firstEmoji = dayEmojis[0];
+        if (dayEmojis.length > 1) secondEmoji = dayEmojis[1];
       }
       dayComp = (
         <DayComp
